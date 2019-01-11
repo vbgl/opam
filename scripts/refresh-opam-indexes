@@ -1,5 +1,3 @@
-#!/bin/bash
-#
 # Script to be run on the machine serving the git checkout via HTTP
 
 MAILTO=enrico.tassi@inria.fr
@@ -10,31 +8,24 @@ notify() {
 echo "OPAM $1 on repo $2 failed:"; cat $LOG
 }
 
-OPAM1=opam
-OPAM2=/usr/local/bin/opam2
-OPAM=$OPAM1
 OPAMCHECKOPTS=
 
 for repo in $@; do
         cd $repo
         if [ "$repo" = "core-dev" ];
         then
-            OPAM=$OPAM2
             OPAMCHECKOPTS=--cycles
-        else
-            OPAM=$OPAM1
         fi
         $OPAM admin check $OPAMCHECKOPTS > $LOG 2>&1
         if [ "$?" != "0" ]; then notify check $repo;
+        fi
+        $OPAM admin make > $LOG 2>&1
+        if [ "$?" != "0" ]; then notify make $repo;
         else
-                $OPAM admin make > $LOG 2>&1
-                if [ "$?" != "0" ]; then notify make $repo;
-                else
-                        # opam admin make does not follow symlinks
-                        #   https://github.com/ocaml/opam/pull/2138
-                        # we rebuild the index by hand
-                        tar czhf index.tar.gz packages/ repo
-                fi
+                # opam admin make does not follow symlinks
+                #   https://github.com/ocaml/opam/pull/2138
+                # we rebuild the index by hand
+                tar czhf index.tar.gz packages/ repo
         fi
         cd ..
 done
