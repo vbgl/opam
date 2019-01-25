@@ -1,0 +1,4 @@
+opam-version: "1.2"
+browse: "https://coq.inria.fr/opam/www/"
+upstream: "https://github.com/coq/opam-coq-archive/tree/master"
+stamp: "2019-01-25 10:19"

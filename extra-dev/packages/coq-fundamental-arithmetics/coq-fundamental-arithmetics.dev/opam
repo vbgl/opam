@@ -1,0 +1,15 @@
+opam-version: "1.1"
+maintainer: "dev@clarus.me"
+homepage: "https://github.com/coq-contribs/fundamental-arithmetics"
+license: "LGPL"
+build: [
+  ["coq_makefile" "-f" "Make" "-o" "Makefile"]
+  [make "-j%{jobs}%"]
+  [make "install"]
+]
+remove: ["rm" "-R" "%{lib}%/coq/user-contrib/FundamentalArithmetics"]
+depends: [
+  "coq" {= "dev"}
+]
+tags: [ "keyword:arithmetic" "keyword:number theory" "category:Mathematics/Arithmetic and Number Theory/Miscellaneous" "date:2008-02-1" ]
+authors: [ "Sébastien Briais <sebastien.briais at ens-lyon.fr>" ]

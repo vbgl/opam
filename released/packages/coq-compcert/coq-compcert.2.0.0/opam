@@ -1,0 +1,14 @@
+opam-version: "1.2"
+author: "Xavier Leroy <xavier.leroy@inria.fr>"
+maintainer: "thomas.braibant@gmail.com"
+homepage: "http://compcert.inria.fr/"
+dev-repo: "https://github.com/AbsInt/CompCert.git"
+bug-reports: "https://github.com/AbsInt/CompCert/issues"
+license: "INRIA Non-Commercial License Agreement"
+build: [
+  ["./configure" "ia32-linux"]
+  [make "-j%{jobs}%"]
+]
+depends: [
+  "coq" {>= "8.4pl4" & < "8.5~"}
+]

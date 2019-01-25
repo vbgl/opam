@@ -1,0 +1,16 @@
+opam-version: "1.1"
+maintainer: "dev@clarus.me"
+homepage: "https://github.com/coq-contribs/goedel"
+license: "Proprietary"
+build: [
+  ["coq_makefile" "-f" "Make" "-o" "Makefile"]
+  [make "-j%{jobs}%"]
+  [make "install"]
+]
+remove: ["rm" "-R" "%{lib}%/coq/user-contrib/Goedel"]
+depends: [
+  "coq" {= "dev"}
+  "coq-pocklington" {= "dev"}
+]
+tags: [ "keyword:goedel" "keyword:rosser" "keyword:incompleteness" "keyword:logic" "keyword:hilbert" "category:Mathematics/Logic/Foundations" "date:2007-04-13" ]
+authors: [ "Russell O'Connor <roconnor@alumni.uwaterloo.ca>" ]

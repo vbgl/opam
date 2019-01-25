@@ -1,0 +1,15 @@
+opam-version: "1.1"
+maintainer: "dev@clarus.me"
+homepage: "https://github.com/coq-contribs/constructive-geometry"
+license: "Proprietary"
+build: [
+  ["coq_makefile" "-f" "Make" "-o" "Makefile"]
+  [make "-j%{jobs}%"]
+  [make "install"]
+]
+remove: ["rm" "-R" "%{lib}%/coq/user-contrib/ConstructiveGeometry"]
+depends: [
+  "coq" {= "dev"}
+]
+tags: [ "keyword:constructive mathematics" "keyword:geometry" "category:Mathematics/Geometry/General" ]
+authors: [ "Gilles Kahn <>" ]
